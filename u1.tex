@@ -41,14 +41,30 @@ I_out = H*I_trans*H;
 
 \section*{Aufgabe 2 - Fourier} 
 
+\begin{itemize}
+\item Generierung der Fourier-Matrix (complexe Matrix mit I-Teil)
+\item bauen von $F^{-1} = F^*$ durch conjugate flip Eigenschaft, up-down-flip von der zweiten bis zur letzten Zeile
+\item einfache Berechnung: $I_{trans} = F * I_{in} * F$
+\item setzen der ZEROS f\"ur Part III anhand der $abs(I_{trans})$
+\item sowie $I_{re} = real( F^* * I_{trans} * F^* )$
+\end{itemize}
+
 \section*{Aufgabe 3 - Verlust}
 \paragraph{Hadamard}
 Es ist m\"oglich den \"uberwiegenden Teil der Elemente in der transformierten 
 Matrix zu entfernen, ohne sichtbare Unterschiede zu bemerken. Ab einem gewissen
 Punkt jedoch, setzt Rauschen ein, der sich zunehmend verst\"arkt. Die Differenz
 zwischen Original und Rekonstruktion zeigt, das Verluste prim\"ar an Frequenz\"uberg\"angen
-entstehen.
+entstehen. Im abgebildeten Beispiel wurden 254054 der 262144 Elemente in der transformierten
+Matrix auf $0$ gesetzt.
+\\
+\includegraphics[width=150mm]{u01/h_out.eps}
+
 
 \paragraph{Fourier}
+Hier verh\"alt sich der Verlust mit blossem Auge \"ahnlich zur Hadamard Transformation. Im diesem Beispiel
+wurden 255281/262144 Elemente auf $0$ gesetzt.
+\\
 
+\includegraphics[width=150mm]{u01/f_out.eps}
 \end{document}
