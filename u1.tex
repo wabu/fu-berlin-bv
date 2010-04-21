@@ -1,0 +1,54 @@
+\include{headerueb}
+\include{header}
+\include{info}
+
+
+\newcommand{\nr}{1}
+
+\begin{document}
+\section*{Aufgaben 1 - Hadamard}
+Wie in der Vorlesung beschrieben, wird die Hadamard-Matrix rekursiv generiert:
+
+\lstset{language=matlab}
+\begin{lstlisting}[]
+function matrix = hadamard(dim)
+    if dim <= 1
+        matrix = [1];
+    else
+        if mod(dim,2) != 0
+            printf ('unsupported dimension\n');
+        else
+            m=hadamard(dim/2);
+            matrix=[m,m;m,-m];
+        end
+    end
+end
+\end{lstlisting}
+
+Die Transformation und R\"ucktransformation lassen sich dann in wenigen Schritten realisieren:
+
+
+\lstset{language=matlab}
+\begin{lstlisting}[]
+H = hadamard(rows);
+# normieren
+H = H/sqrt(rows);
+
+I_trans = H*double(I_in)*H;
+I_trans = reduce(I_trans,0.2);
+I_out = H*I_trans*H;
+\end{lstlisting}
+
+\section*{Aufgabe 2 - Fourier} 
+
+\section*{Aufgabe 3 - Verlust}
+\paragraph{Hadamard}
+Es ist m\"oglich den \"uberwiegenden Teil der Elemente in der transformierten 
+Matrix zu entfernen, ohne sichtbare Unterschiede zu bemerken. Ab einem gewissen
+Punkt jedoch, setzt Rauschen ein, der sich zunehmend verst\"arkt. Die Differenz
+zwischen Original und Rekonstruktion zeigt, das Verluste prim\"ar an Frequenz\"uberg\"angen
+entstehen.
+
+\paragraph{Fourier}
+
+\end{document}
