@@ -34,15 +34,11 @@ F = fourier(rows);
 # inverted F is conjugated F, just flip
 F_conj = [F(1,:); flipud(F(2:end,:))];
 
-F*F_conj
-
 I_trans =F*double(I_in)*F;
-#I_trans = reduce(I_trans,0.2);
-I_out = uint8(F_conj*I_trans*F_conj);
+I_trans = reduce(I_trans,0.2);
+I_out = uint8(real(F_conj*I_trans*F_conj));
 
 I_con = [I_in, I_in - I_out , I_out];
 
 imshow(uint8(I_con));
-
-
 
