@@ -1,7 +1,8 @@
 #!/bin/sh
 
 OCT_PATH="";
-for i in *; do
+dir=`dirname $0`;
+for i in $dir/*; do
     if [ -d $i ]; then
         OCT_PATH="$OCT_PATH -p $i/";
     fi
