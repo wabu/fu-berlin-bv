@@ -24,6 +24,6 @@ I_out = H*I_trans*H;
 I_con = [I_in, I_in - I_out , I_out];
 
 imshow(uint8(I_con));
-imwrite(uint8(I_con), "h_out.png");
+imwrite(uint8(I_con), "u01/h_out.png");
 
 

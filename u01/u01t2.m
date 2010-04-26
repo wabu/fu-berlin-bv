@@ -7,6 +7,7 @@ function w = rootOfUnity(N)
     w = e**(2*pi*i/N);
 end
 
+# TODO export to func/
 function matrix = fourier(N)
     w = rootOfUnity(N);
     matrix = zeros(N);
@@ -41,4 +42,4 @@ I_out = uint8(real(F_conj*I_trans*F_conj));
 I_con = uint8([I_in, I_in - I_out , I_out]);
 
 imshow(I_con);
-imwrite(I_con, "f_out.png");
+imwrite(I_con, "u01/f_out.png");
