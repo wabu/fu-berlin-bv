@@ -3,24 +3,6 @@
 
 printf('-- u01/task2 - fourier transformation\n\n');
 
-function w = rootOfUnity(N)
-    w = e**(2*pi*i/N);
-end
-
-# TODO export to func/
-function matrix = fourier(N)
-    w = rootOfUnity(N);
-    matrix = zeros(N);
-    for i=0:N-1
-        for j=0:N-1
-            matrix(i+1,j+1) = w**(i*j);
-        end
-    end
-    matrix = matrix/sqrt(N);
-end
-
-
-
 # load image into matrix
 I_in = loadimageprompt();
 
