@@ -2,7 +2,6 @@
 \include{tex/header}
 \include{tex/info}
 
-
 \newcommand{\nr}{2}
 \lstset{language=matlab}
 
@@ -16,7 +15,7 @@ m\"ussen. (Anmerkung: fft(x) arbeitet zeilenweise/auf einen Zeilenvektor)\\
 \lstinputlisting[caption=func/fft.m,language=matlab]{func/fft.m}
 Die \"aquivalente IFFT haben wir in der fftc.m implementiert, wobei der
 unterschied in der Konjugation der Einheitswurzel besteht: 
-$e^{-2\frac{\pi*i}{N}} <=> e^{2\frac{\pi*i}{N}} $
+$e^{-2\frac{\pi*i}{N}} \Leftrightarrow e^{2\frac{\pi*i}{N}} $
 
 Im 2D sieht die Anwendung wie folgt aus: 
 \begin{enumerate}
@@ -27,19 +26,37 @@ Im 2D sieht die Anwendung wie folgt aus:
 \end{enumerate}
 \lstinputlisting[caption=FFT-2D,language=matlab]{func/fft2d.m}
 
-Ergebnis der Transformation von Lenna ist:\\
-\includegraphics[width=150mm]{u02/f_out.eps}
-
-\lstset{language=matlab}
-\begin{lstlisting}[]
-\end{lstlisting}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=50mm]{u02/f_out.eps}
+\end{center}
+\caption{Ergebnis: Lenna im Frequenzraum}
+\end{figure}
 
 \section*{Aufgabe 2 - Konvolution - DFT vs. FFT} 
 
+Wie in der Vorlesung vorgestellt, wird die zur Faltung der Convulutionssatz verwendet.
+Als Test-Kern haben wir ein einfach Glaettung angewandt:
+\lstset{language=matlab}
+\begin{lstlisting}[]
+k = [0.4,0.2,0.1,zeros(1,n-5),0.1,0.2];
+K = k' * k;
+\end{lstlisting}
 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=50mm]{u02/c_out.eps}
+\end{center}
+\caption{Ergebnis: Glaettung}
+\end{figure}
+
+Schon bei der geringen Groesse des Bildes (512$\times$512) ist ein deutlicher
+unterschied zwischen FFT und primitiver FT feststellbar.
+\begin{verbatim}
 using fft
 Elapsed time is 4.93589 seconds.
 using dft
 Elapsed time is 18.4002 seconds.
+\end{verbatim}
 
 \end{document}
