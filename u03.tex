@@ -22,8 +22,8 @@ korrekt zusammen.
 \subsection*{Generierung der Kernel}
 \begin{enumerate}
 \item Gauss 3\&10: Erstellung einer $NxN$ Matrix, Anwendung der Gaussfunktion 
-      in 2D mit Parametern $\varsigma$ und $x, y$, f\"uhrt zu zentriertem Auge -> shiften
-\item Sobel X: \begin{pmatrix} 1 & 0 & -1 \\ 2 & 0 & -2 \\ 1 & 0 & -1  \end{pmatrix} einf\"ugen
+      in 2D mit Parametern $\varsigma$ und $x, y$, f\"uhrt zu zentriertem Auge $ \to $ shiften
+\item Sobel X: $ \begin{pmatrix} 1 & 0 & -1 \\ 2 & 0 & -2 \\ 1 & 0 & -1  \end{pmatrix}$ einf\"ugen
 in zeros $NxN$ und wieder shift nach links und nach oben
 \item Sobel Y: $-1 Sx^{T}$
 \item Uniform: $1/25*(5x5\text{matrix})$ \ldots analog zu den vorherigen
@@ -44,7 +44,7 @@ liegenden Haare
 
 \section*{Aufgabe 2 - 2D Dekonvolution}
 Weil der Kernel bekannt ist, kann das Originalbild durch Umformung der Konvolutionsgleichung
-wieder hergestellt werden: $B_deconv=F^{-1}*(FB_convF ./ FKF)*F^{=1}$
+wieder hergestellt werden: $B_{deconv}=F^{-1}*(FB_{conv}F ./ FKF)*F^{=1}$
 \\
 Ein Problem entsteht hier allerdings sobald in der transformierten Kernel-Matrix Elemente mit
 dem Wert $0$ stehen. Diese haben wir ``provisorisch'' durch sehr kleine Werte ersetzt. 
