@@ -1,11 +1,11 @@
-# matrix M and percentage factor
+%   matrix M and percentage factor
 function matrix = reduce(M, factor)
     [rows, cols] = size(M);
     M_abs = abs(M);
     elMax = max(max(M_abs));
     elMin = min(min(M_abs));
     thold = elMin + (elMax-elMin)*factor;
-    thold = 50;
+    thold = 2;
     i = 0;
     matrix = M;
     for row=1:rows
