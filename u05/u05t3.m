@@ -19,7 +19,7 @@ If = real(conv(K_uni, double(I)));
 H = If;
 W = ones(rows,cols);
 
-for i=1:5
+for i=1:10
     W = W.*conv(K_uni, H./conv(K_uni, W));
 end
 
