@@ -18,8 +18,8 @@ If = conv(K_uni, double(I));
 
 H = If;
 W = ones(rows,cols);
+W_ = ones(rows,cols);
 
-W_ = W;
 
 function j=m(i)
     n = 512;
@@ -43,4 +43,5 @@ for x=1:n
         W_(x,y) = W(x,y) * z;
     end
 end
+W(:,:) = W_;
 
