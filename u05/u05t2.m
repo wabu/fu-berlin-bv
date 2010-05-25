@@ -13,11 +13,18 @@ n = rows;
 Wi = cwavem(rows);
 W  = Wi^-1;
 
-trans = W*(W*(double(I)).').';
-trans(n/2+1:n, 1:n) = 0;
-trans(1:n, n/2+1:n) = 0;
+% 1 2  1 1 2 2
+% 3 4  3 3 4 4
+%
+% 1 2  1 1 2 2
+% 1 2  1 1 2 2
+% 3 4  3 3 4 4
+% 3 4  3 3 4 4
 
-trans(n/4+1:n, n/4+1:n) = trans(n/4+1:n, n/4+1:n)/4;
+
+save = trans(0,0);
+trans(1:n/4, 1:n/4) = 0;
+trans(0,0) = save;
 out = Wi*(Wi*(trans).').';
 
 imwrite([I, uint8(128+trans), uint8(out)], "u05/task2.png");
