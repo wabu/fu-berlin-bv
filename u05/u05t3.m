@@ -44,7 +44,7 @@ W_ = ones(rows,cols);
 %end
 %W(:,:) = W_;
 
-for i=1:5
+for i=1:10
     W = W.*conv(K_uni, H./conv(K_uni, W));
 end
 
