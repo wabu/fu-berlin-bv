@@ -1,0 +1,86 @@
+\include{tex/headerueb}
+\include{tex/header}
+\include{tex/info}
+
+\newcommand{\nr}{6}
+\lstset{language=matlab}
+
+\begin{document}
+\section*{Aufgabe 1 - Histogram}
+\paragraph{Berechnung des Histogramms}
+In einem Array der Groesse der Graustufen werden die Pixel des zugehehoerigen
+Wertes im Bild gezaehlt und anschliessend wird das Histogramm normalisiert.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=100mm]{u06/task1-hist.eps}
+\end{center}
+\caption{Histogramme der Lena-Bilder}
+\end{figure}
+
+\paragraph{Angleichung}
+Mit Hilfe der cumsum function kann die Verteilungsfunction berechnent werden.
+
+Anschliessend kann auf jedes Pixel die in der Vorlesung vorgestellte Normailsierungsfunction angewandt werden:
+\begin{equation}
+y = \frac{cdf(x) - m}{1 - m}
+\end{equation}
+wobei $m$ den ersten Wert im Histogram der ungleich 0 ist darstellt.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=150mm]{u06/task1-eq.eps}
+\end{center}
+\caption{Ergebniss der Angleichung}
+\end{figure}
+
+\section*{Aufgabe 2 - Kantenerkennung}
+\paragraph{Noise Reduction}
+Anwendung eines Gausfilters mit $\sigma=1$ wie in Aufgabe 3 fuhrt zur Veringerung des Rauschens.
+
+\paragraph{Derivative}
+Die Ableitung in $x$ bzw. $y$ kann auch wie in Aufgabe 3 mit Hilfe des Sobel-Filters bestimmt werden.
+
+\paragraph{Non-maxima Supression}
+Die Umrechnung in Polar-Koordinaten erfolgt mit \lstinline@card2pol(Ix, Iy)@.
+
+Anschliessend wird der Winckel auf 0, 45, 90 und 135 normalisiert und gerunden und anhand des
+Winkels bestimmt, welche umliegenden Fehlder fuer einen Pixel zur NMS betrachtet werden muessen.
+Ist die Groesse der Ableitung (Radius in Polar) bei einem Pixel nicht mximal in
+den betrachteten Felder, wird dies auf 0 gesetzt.
+
+\paragraph{Thresholding und Tracking}
+Fuer alle Pixel, deren Ableitung groesser als \lstinline@maxtres@ ist, wird die Track-Function aufgerufen,
+die rekursive alle Pixel in die Richtung der Kante deren Ableitung groesser als \lstinline@mintres@ ist,
+makiert.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=150mm]{u06/t2.eps}
+\end{center}
+\caption{Kantenerkennung mit Zwischenschritten}
+\end{figure}
+
+\section*{Aufgabe 3 - Morphologische Operatoren}
+\paragraph{Dilate und Erode}
+Die Maske kann mit \lstinline@and@ bzw. \lstinline@or@ und  \lstinline@not@ auf Teilstucke des Bildes angewandt werden und anschliessend
+wird der Wert des Pixels an der Stelle mit \lstinline@any@ bzw. \lstinline@all@ darauf bestimmt werden.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=100mm]{u06/t3-ed.eps}
+\end{center}
+\caption{Erode und Dilate}
+\end{figure}
+
+\paragraph{Close und Open}
+Durch Verknuepfung von Dilate und Erode
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=100mm]{u06/t3-co.eps}
+\end{center}
+\caption{Open und Close}
+\end{figure}
+
+\end{document}
