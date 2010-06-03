@@ -79,3 +79,7 @@ for x=1:hx-2
     end
 end
 
+
+
+imwrite(uint8(R), "u07/task2.png");
+

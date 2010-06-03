@@ -13,6 +13,7 @@ for x=1:hx
 end
 
 R = zeros(sx,sy);
+S = R;
 
 for x=1:hx-1
     for y=1:hy-1
@@ -30,4 +31,8 @@ for x=1:hx-1
         R(x2-1,y2  ) = 1*a + 3*b + 3*c + 9*d;
     end
 end
+
+
+imwrite(uint8(H), "u07/smalloma.png");
+imwrite(uint8(R), "u07/task1.png");
 
