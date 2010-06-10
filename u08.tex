@@ -1,0 +1,67 @@
+\include{tex/headerueb}
+\include{tex/header}
+\include{tex/info}
+
+\newcommand{\nr}{6}
+\lstset{language=matlab}
+
+\begin{document}
+
+\section*{Aufgabe 1 - Plot der Farbr\"aume}
+Implementierung der Anforderung in wenigen Zeilen:
+\begin{lstlisting}[language=matlab,caption=Approxiamation der vier neuen Pixel]
+H = rgb2hsv(I);
+
+plot3(I(:,:,1), I(:,:,2), I(:,:,3), '.');
+plot3(H(:,:,1), H(:,:,2), H(:,:,3), '.');
+\end{lstlisting}
+
+Aus dem RGB-Diagramm geht f\"ur das menschliche Verst\"andnis die eigentliche
+Farbverteilung besser hervor: Sehr viele dunkle Farbt\"one durch die Konzentration
+um den Nullpunkt, geringe Farbdynamik durch lineare Verteilung (mit Ausnahme der 
+zwei \"Aste f\"ur den grossen t\"urkisen und gelben Anteil) durch durch Grau/Weiss-Anteile. \\
+Der Farbton l\"asst sich ohne Vorwissen von \texttt{Hue} aus dem HSV-Diagramm nicht
+ableiten. Hier liegt der Vorteil in der Beschreibung der Farbt\"one. Im Diagramm ist
+eine Verteilungswolke mit geringer S\"attigung  zu erkennen, die dem
+dominierenden Schwarzton zuzuordnen ist. In der N\"ahe fallen zwei weitere Verteilungszentren mit wenig h\"oherer S\"attigung auf - Pastellton f\"ur das Spielfeld (Gr\"un) und das Tor (Gelb). Genrell ist das Bild relativ dunkel mit geringer Farbintensit\"at (viele Pixel mit geringer Helligkeit)
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=100mm]{u08/graphs.eps}
+\end{center}
+\caption{Verteilung der Pixel im RGB-Farbraum (links) und HSV (rechts)}
+\end{figure}
+
+
+
+\section*{Farbersetzungen im RGB und HSV Farbraum}
+\begin{itemize}
+\item Bestimmung des Zielfarbtons in RGB ist z.B. $\vec{r} = [174,77,96]$ f\"ur 
+      die Farbe des Torwart-Roboters
+\item Betrachten der Farbinformation als Vektor
+\item F\"ur jeden Pixel $\vec{p}$: Wenn $|laenge(\vec{p}-\vec{r})|< d$ dann
+      wird die Farbe ersetzt
+\item Im HSV-Farbraum analog, nur Farbwert und Distanz sind anzupassen
+\end{itemize}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=100mm]{u08/dist_rgb.eps}
+\end{center}
+\caption{Uniformierung in RGB}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=100mm]{u08/dist_hsv.eps}
+\end{center}
+\caption{Bessere Uniformierung in HSW}
+\end{figure}
+
+Das Ergebnis der Ersetzung in HSV \"uberzeugt im Vergleich zur RGB-Variante. Ferner
+war hier keine mehrmalige Nachjustierung n\"otig, um Qualit\"at des Ergebnisses zu
+verbessern. \\
+Begr\"unden l\"asst sich das damit, dass die tats\"achliche Farbcharakteristik in
+HSV besser beschrieben wird und geringe Abweichung bereits gr\"ossere optische Fer\"anderung bewirken als im RGB-Raum.
+
+\end{document}
