@@ -51,7 +51,7 @@ M(1:20,1:5) = ones(20,5);
 for x=1:rows
     for y=1:cols
         if B(x,y)
-            t = theta(x,y) + pi/2;
+            for t=theta(x,y)-pi/2:pi:theta(x,y)+pi/2
             for a=(t-dt):(diff_t/res):(t+dt)
                 d = x * cos(a) + y * sin(a);
                 if (d<0)
@@ -69,6 +69,7 @@ for x=1:rows
                 mx = ceil((a-min_t)/diff_t*res);
                 my = ceil((d-min_d)/diff_d*res);
                 M(mx,my) += 1;
+            end
             end
         end
     end

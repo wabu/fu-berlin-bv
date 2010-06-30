@@ -27,7 +27,7 @@ Iy = real(conv(K_sy, double(I)));
 [theta,r] = cart2pol(Ix,Iy);
 
 B = zeros(rows,cols);
-th = 100;
+th = 120;
 for x=1:rows
     for y=1:cols
         if r(x,y) > th
@@ -36,36 +36,42 @@ for x=1:rows
     end
 end
 
-dt = 0.3;
+dt = 0.2;
 
-min_t = -pi;
-max_t = pi;
-diff_t = max_t - min_t;
-min_d = -1000;
-max_d = 1000;
-diff_d = max_d - min_d;
+min_r = 3;
+max_r = 23;
+diff_r = max_r - min_r;
+min_x = 1;
+max_x = cols;
+diff_x = max_x - min_x;
+min_y = 1;
+max_y = rows;
+diff_y = max_y - min_y;
 
-res = 100;
-M = zeros(res, res);
+res = 500;
+M = zeros(res, res, diff_r+1);
 
 for x=1:rows
-    for y=1:cols
-        if B(x,y)
-            t = theta(x,y);
-            for a=(t-dt):(diff_t/res):(t+dt)
-                if (a>pi)
-                    a -= 2*pi;
-                end
-                if (a<-pi)
-                    a+= 2*pi;
-                end
-                d = x * cos(a) + y * sin(a);
-                mx = ceil((a-min_t)/diff_t*res);
-                my = ceil((d-min_d)/diff_d*res);
-                M(my,mx) += 1;
-            end
-        end
+for y=1:cols
+if B(x,y)
+    for r=min_r:max_r
+    for t=-pi:(pi/r):pi
+        dx = r*cos(t);
+        dy = r*sin(t);
+        x_ = ceil(((x+dx)-min_x)/diff_x*res);
+        y_ = ceil(((y+dx)-min_y)/diff_y*res);
+        r_ = r - min_r +1;
+        M(x_, y_, r_) += 1;
+    end
     end
 end
-imshow(M/1000);
+end
+end
+
+imshow(M(:,:,1)/1000);
+imshow(M(:,:,3)/1000);
+imshow(M(:,:,5)/1000);
+imshow(M(:,:,10)/1000);
+imshow(M(:,:,15)/1000);
+imshow(M(:,:,20)/1000);
 
