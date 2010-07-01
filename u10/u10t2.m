@@ -39,7 +39,7 @@ end
 dt = 0.2;
 
 min_r = 3;
-max_r = 23;
+max_r = 53;
 diff_r = max_r - min_r;
 min_x = 1;
 max_x = cols;
@@ -50,28 +50,38 @@ diff_y = max_y - min_y;
 
 res = 500;
 M = zeros(res, res, diff_r+1);
+mark = zeros(res, res);
+m=0;
 
 for x=1:rows
 for y=1:cols
 if B(x,y)
     for r=min_r:max_r
-    for t=-pi:(pi/r):pi
+    m++;
+    for t=-pi:(pi/(r*2)):pi
         dx = r*cos(t);
         dy = r*sin(t);
         x_ = ceil(((x+dx)-min_x)/diff_x*res);
-        y_ = ceil(((y+dx)-min_y)/diff_y*res);
+        y_ = ceil(((y+dy)-min_y)/diff_y*res);
         r_ = r - min_r +1;
-        M(x_, y_, r_) += 1;
+        % avoid hitting a pixel twice in a single rendering
+        if( mark(x_,y_)!=m )
+            M(x_, y_, r_) += 1;
+            mark(x_,y_)=m;
+        end
     end
     end
 end
 end
 end
 
-imshow(M(:,:,1)/1000);
-imshow(M(:,:,3)/1000);
-imshow(M(:,:,5)/1000);
-imshow(M(:,:,10)/1000);
-imshow(M(:,:,15)/1000);
-imshow(M(:,:,20)/1000);
+imshow(M(:,:,1)/100);
+imshow(M(:,:,3)/100);
+imshow(M(:,:,5)/100);
+imshow(M(:,:,10)/100);
+imshow(M(:,:,15)/100);
+imshow(M(:,:,20)/100);
+imshow(M(:,:,30)/100);
+imshow(M(:,:,40)/100);
+imshow(M(:,:,50)/100);
 
