@@ -39,8 +39,9 @@ end
 dt = 0.2;
 
 min_r = 3;
-max_r = 53;
+max_r = 20;
 diff_r = max_r - min_r;
+rs = [3,5,10,20];
 min_x = 1;
 max_x = cols;
 diff_x = max_x - min_x;
@@ -48,7 +49,7 @@ min_y = 1;
 max_y = rows;
 diff_y = max_y - min_y;
 
-res = 500;
+res = 400;
 M = zeros(res, res, diff_r+1);
 mark = zeros(res, res);
 m=0;
@@ -56,7 +57,7 @@ m=0;
 for x=1:rows
 for y=1:cols
 if B(x,y)
-    for r=min_r:max_r
+    for r=rs
     m++;
     for t=-pi:(pi/(r*2)):pi
         dx = r*cos(t);
