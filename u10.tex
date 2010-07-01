@@ -13,7 +13,7 @@ auf eine Zweierpotenz skalierten und entsprechend wei\ss{}/graue Balken
 erweiterten.
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=100mm]{u10/street.eps}
+\includegraphics[width=70mm]{u10/street.eps}
 \end{center}
 \label{street}
 \caption{Street - Ausgangsbild}
@@ -26,28 +26,28 @@ um nur relevante Pixel in die Betrachtung als potentielle Teile einflie\ss{}en z
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=100mm]{u10/street_edges.eps}
+\includegraphics[width=90mm]{u10/street_edges.eps}
 \end{center}
 \label{streete}
 \caption{Nur die Gradienten der wei\ss en Pixel werden betrachtet}
 \end{figure}
 
 Im letzten Schritte verwendeten wir den Algorithmus aus der Vorlesung, bei dem 
-m\"ogliche Geradenverl\"aufe in Abh\"angigkeit von $d = x \cdot \cos \teta  + y \cdot \sin \teta $
-betrachtet werden. $\Teta$ geht aus der Gradientenrichtung hervor plus einem zus\"atzlichen
+m\"ogliche Geradenverl\"aufe in Abh\"angigkeit von $d = x \cdot \cos \theta + y \cdot \sin \theta $
+betrachtet werden. $\Theta$ geht aus der Gradientenrichtung hervor plus einem zus\"atzlichen
 Abweichungsfenster. Die Werte werden diskretisiert und in eine Matrix gespeichert. Die Visualisierung
 der Matrix sieht dann wie folgt aus:
 
 \begin{figure} [H]
 \begin{center}
-\includegraphics[width=100mm]{u10/street_lines.eps}
+\includegraphics[width=90mm]{u10/street_lines.eps}
 \end{center}
 \label{streetl}
 \caption{Die erkannten Geraden}
 \end{figure}
 
-Interpretation der Grafik: Abbildung von $d$ auf $\teta$, wobei der Nullpunkt in der linken oberen
-Ecke liegt. Der Wertebereich von $\teta$ l\"auft von $-\pi$ bis $+\pi$. Zu erkennen sind zwei 
+Interpretation der Grafik: Abbildung von $d$ auf $\theta$, wobei der Nullpunkt in der linken oberen
+Ecke liegt. Der Wertebereich von $\theta$ l\"auft von $-\pi$ bis $+\pi$. Zu erkennen sind zwei 
 wesentliche Geradenarten. Die mit Variationen um die null Grad und steigendem Abstand (also 
 horizontale Linien, die perspektivisch verlaufen) und die Senkrechten, die im geringen Abstandsbereich
 dominieren (weil sie auch fl\"achenm\"assig \"uberwiegen) aber in einem konstanten Winkel (90 Grad)
